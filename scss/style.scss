@@ -16,22 +16,84 @@ body {
 	font-family: "e-Ukraine-Regular";
 	font-size: 16px;
 }
-// [type="text"] {
-// 	display: block;
-// }
+
 input {
-	display: block;
+	margin-bottom: 0.25rem;
 	&[type="number"] {
 		display: inline-block;
+		padding: 0.25rem;
+		background-color: #bac5cf;
+		border: #000 solid 0.0625rem;
+		border-radius: 0.25rem;
+		margin-top: 0.325rem;
 	}
-	// &[type="button"] {
-	// 	display: inline-block;
-	// }
+	&[type="button"] {
+		display: block;
+	}
+	&[type="text"] {
+		margin-top: 0.325rem;
+		padding: 0.25rem;
+		background-color: #bac5cf;
+		border: #000 solid 0.0625rem;
+		border-radius: 0.25rem;
+		width: 100%;
+	}
 }
 
 .btn {
-	margin-bottom: 20px;
 	cursor: pointer;
+	appearance: none;
+	background-color: #fafbfc;
+	border: 1px solid rgba(27, 31, 35, 0.15);
+	border-radius: 6px;
+	box-shadow:
+		rgba(27, 31, 35, 0.04) 0 1px 0,
+		rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+	box-sizing: border-box;
+	color: #24292e;
+	cursor: pointer;
+	line-height: 115%;
+	list-style: none;
+	padding: 0.5rem 0.75rem;
+	position: relative;
+	transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	vertical-align: middle;
+	white-space: nowrap;
+	word-wrap: break-word;
+
+	&:hover {
+		background-color: #f3f4f6;
+		text-decoration: none;
+		transition-duration: 0.1s;
+	}
+
+	&:disabled {
+		background-color: #fafbfc;
+		border-color: rgba(27, 31, 35, 0.15);
+		color: #959da5;
+		cursor: default;
+	}
+
+	&:active {
+		background-color: #edeff2;
+		box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+		transition: none 0s;
+	}
+
+	&:focus {
+		outline: 1px transparent;
+	}
+
+	&:before {
+		display: none;
+	}
+
+	&:-webkit-details-marker {
+		display: none;
+	}
 }
 // =======================
 // =======================
@@ -45,23 +107,34 @@ input {
 	height: 100vh;
 	padding: 15px;
 	display: flex;
-	gap: 30px;
+	gap: 1.875rem;
 }
 .diploma-body {
 	width: 210mm;
 	height: 297mm;
-	padding-top: 180px;
-	background: url("../img/background-00.png") no-repeat center;
-	background-size: cover;
-	&__headline {
+	padding: 11.25rem 2.975rem 7.975rem 2.975rem;
+	background: url("../img/background-00.webp") no-repeat center;
+	background-size: contain;
+	&__headline,
+	&__title,
+	&__person,
+	&__text {
 		width: fit-content;
 		margin: 0 auto;
 		text-align: center;
-
-		& > div {
+	}
+	&__headline {
+		> h1,
+		h2 {
+			color: #0055ff;
+			-webkit-text-stroke: 0.1875rem #001b52;
 			font-family: "e-UkraineHead-Bold";
 			line-height: 125%;
 			font-weight: 800;
+		}
+		h2 {
+			letter-spacing: 0.325rem;
+			text-transform: uppercase;
 		}
 	}
 
@@ -69,9 +142,14 @@ input {
 	}
 
 	&__person {
+		font-size: 8rem;
+		line-height: 125%;
+		margin-top: 4rem;
 	}
 
 	&__text {
+		font-size: 5rem;
+		line-height: 125%;
 	}
 
 	&__signature {
@@ -80,8 +158,10 @@ input {
 
 .headline {
 	&__top {
+		font-size: 2rem;
 	}
 	&__bottom {
+		font-size: 5rem;
 	}
 }
 
@@ -97,12 +177,14 @@ input {
 }
 
 .diploma-controls {
-	border: 2px solid #000;
-	border-radius: 15px;
-	padding: 30px;
+	border: 0.125rem solid #000;
+	border-radius: 1rem;
+	padding: 2rem;
 	flex: 0 1 auto;
+	font-size: 0.65rem;
 	&__titles {
-		margin-bottom: 5px;
+		font-size: 1rem;
+		margin-bottom: 0.3125rem;
 		font-family: "e-Ukraine-Bold";
 		font-weight: 600;
 	}

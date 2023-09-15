@@ -155,15 +155,85 @@ body {
 }
 
 input {
-  display: block;
+  margin-bottom: 0.25rem;
 }
 input[type=number] {
   display: inline-block;
+  padding: 0.25rem;
+  background-color: #bac5cf;
+  border: #000 solid 0.0625rem;
+  border-radius: 0.25rem;
+  margin-top: 0.325rem;
+}
+input[type=button] {
+  display: block;
+}
+input[type=text] {
+  margin-top: 0.325rem;
+  padding: 0.25rem;
+  background-color: #bac5cf;
+  border: #000 solid 0.0625rem;
+  border-radius: 0.25rem;
+  width: 100%;
 }
 
 .btn {
-  margin-bottom: 20px;
   cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #fafbfc;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  -webkit-box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+          box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #24292e;
+  cursor: pointer;
+  line-height: 115%;
+  list-style: none;
+  padding: 0.5rem 0.75rem;
+  position: relative;
+  -webkit-transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+.btn:hover {
+  background-color: #f3f4f6;
+  text-decoration: none;
+  -webkit-transition-duration: 0.1s;
+          transition-duration: 0.1s;
+}
+.btn:disabled {
+  background-color: #fafbfc;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959da5;
+  cursor: default;
+}
+.btn:active {
+  background-color: #edeff2;
+  -webkit-box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+          box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  -webkit-transition: none 0s;
+  transition: none 0s;
+}
+.btn:focus {
+  outline: 1px transparent;
+}
+.btn:before {
+  display: none;
+}
+.btn:-webkit-details-marker {
+  display: none;
 }
 
 .wrapper {
@@ -173,38 +243,63 @@ input[type=number] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 30px;
+  gap: 1.875rem;
 }
 
 .diploma-body {
   width: 210mm;
   height: 297mm;
-  padding-top: 180px;
-  background: url("../img/background-00.png") no-repeat center;
-  background-size: cover;
+  padding: 11.25rem 2.975rem 7.975rem 2.975rem;
+  background: url("../img/background-00.webp") no-repeat center;
+  background-size: contain;
 }
-.diploma-body__headline {
+.diploma-body__headline, .diploma-body__title, .diploma-body__person, .diploma-body__text {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   margin: 0 auto;
   text-align: center;
 }
-.diploma-body__headline > div {
+.diploma-body__headline > h1,
+.diploma-body__headline h2 {
+  color: #0055ff;
+  -webkit-text-stroke: 0.1875rem #001b52;
   font-family: "e-UkraineHead-Bold";
   line-height: 125%;
   font-weight: 800;
 }
+.diploma-body__headline h2 {
+  letter-spacing: 0.325rem;
+  text-transform: uppercase;
+}
+.diploma-body__person {
+  font-size: 8rem;
+  line-height: 125%;
+  margin-top: 4rem;
+}
+.diploma-body__text {
+  font-size: 5rem;
+  line-height: 125%;
+}
+.headline__top {
+  font-size: 2rem;
+}
+.headline__bottom {
+  font-size: 5rem;
+}
+
 .diploma-controls {
-  border: 2px solid #000;
-  border-radius: 15px;
-  padding: 30px;
+  border: 0.125rem solid #000;
+  border-radius: 1rem;
+  padding: 2rem;
   -webkit-box-flex: 0;
       -ms-flex: 0 1 auto;
           flex: 0 1 auto;
+  font-size: 0.65rem;
 }
 .diploma-controls__titles {
-  margin-bottom: 5px;
+  font-size: 1rem;
+  margin-bottom: 0.3125rem;
   font-family: "e-Ukraine-Bold";
   font-weight: 600;
 }

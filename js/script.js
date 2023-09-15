@@ -14,44 +14,70 @@ $('.btn').on('click', function (elem) {
 				break;
 		}
 	}
-
-
 });
 
 let colorText;
-let colorTextBorder;
+let colorHead;
+let colorHeadBorder;
 let defaultColor = "#0055ff";
 
 const startup = () => {
+	colorHead = document.querySelector("#colorHead");
 	colorText = document.querySelector("#colorText");
-	colorTextBorder = document.querySelector("#colorTextBorder");
+	colorHeadBorder = document.querySelector("#colorHeadBorder");
+	colorHead.value = defaultColor;
 	colorText.value = defaultColor;
-	colorTextBorder.value = defaultColor;
+	colorHeadBorder.value = defaultColor;
+	colorHead.addEventListener("input", updateFirst, false);
 	colorText.addEventListener("input", updateFirst, false);
-	colorTextBorder.addEventListener("input", updateFirst, false);
+	colorHeadBorder.addEventListener("input", updateFirst, false);
+	colorHead.addEventListener("change", updateAll, false);
 	colorText.addEventListener("change", updateAll, false);
-	colorTextBorder.addEventListener("change", updateAll, false);
+	colorHeadBorder.addEventListener("change", updateAll, false);
 	colorText.select();
-	colorTextBorder.select();
+	colorHead.addEventListener("change", updateAll, false);
+	colorHeadBorder.select();
 };
 
 const updateFirst = (event) => {
-	// console.dir(event.target.id);
-	if (event.target.id == 'colorText') {
-		$('#diplomaHeadline > div').css('color', event.target.value);
+	if (event.target.id == 'colorHead') {
+		$('#headlineTop').css('color', event.target.value);
+		$('#headlineBottom').css('color', event.target.value);
 	}
-	else if (event.target.id == 'colorTextBorder') {
-		$('#diplomaHeadline > div').css('textStroke', `1px ${event.target.value}`);
+	else if (event.target.id == 'colorHeadBorder') {
+		$('#headlineTop').css('textStroke', `1px ${event.target.value}`);
+		$('#headlineBottom').css('textStroke', `1px ${event.target.value}`);
+	} else if (event.target.id == 'colorText') {
+		$('#diplomaPerson').css('color', event.target.value);
+		$('#diplomaText').css('color', event.target.value);
 	}
 };
 
 const updateAll = (event) => {
-	if (event.target.id == 'colorText') {
-		$('#diplomaHeadline > div').css('color', event.target.value);
+	if (event.target.id == 'colorHead') {
+		$('#headlineTop').css('color', event.target.value);
+		$('#headlineBottom').css('color', event.target.value);
 	}
-	else if (event.target.id == 'colorTextBorder') {
-		$('#diplomaHeadline > div').css('textStroke', `1px ${event.target.value}`);
+	else if (event.target.id == 'colorHeadBorder') {
+		$('#headlineTop').css('textStroke', `1px ${event.target.value}`);
+		$('#headlineBottom').css('textStroke', `1px ${event.target.value}`);
+	} else if (event.target.id == 'colorText') {
+		$('#diplomaPerson').css('color', event.target.value);
+		$('#diplomaText').css('color', event.target.value);
 	}
 };
+
+const setBackground = () => {
+	let selectedFile = $("#diplomaBackground")[0].files[0];
+	$('#diplomaBody').css(
+		{
+			background: `url(../img/${selectedFile.name}) no-repeat center`,
+			backgroundSize: 'cover'
+		}
+	);
+}
+
+// const inputElement = $('#diplomaBackground');
+// inputElement.addEventListener("change", handleFiles, false);
 
 window.addEventListener("load", startup, false);
