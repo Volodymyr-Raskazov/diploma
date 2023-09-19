@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Зміна стилів тексту в реальному часі</title>
+	<style>
+		body {
+			display: flex;
+		}
+
+		.left-column {
+			flex: 1;
+			padding: 20px;
+		}
+
+		.right-column {
+			flex: 0.5;
+			padding: 20px;
+		}
+
+		.textToChange {
+			margin-bottom: 10px;
+			display: block;
+			padding: 10px;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<div class="left-column">
+		<div class="textToChange" id="text1">Текст 1: Це перший текст.</div>
+		<div class="textToChange" id="text2">Текст 2: Це другий текст.</div>
+		<div class="textToChange" id="text3">Текст 3: Це третій текст.</div>
+		<div class="textToChange" id="text4">Текст 4: Це четвертий текст.</div>
+		<div class="textToChange" id="text5">Текст 5: Це п'ятий текст.</div>
+		<div class="textToChange" id="text6">Текст 6: Це шостий текст.</div>
+	</div>
+
+	<div class="right-column">
+		<label for="elementSelector">Виберіть елемент:</label>
+		<select id="elementSelector">
+			<option value="text1">Текст 1</option>
+			<option value="text2">Текст 2</option>
+			<option value="text3">Текст 3</option>
+			<option value="text4">Текст 4</option>
+			<option value="text5">Текст 5</option>
+			<option value="text6">Текст 6</option>
+		</select>
+
+		<label for="fontSize">Розмір шрифту:</label>
+		<input type="range" class="fontSizeControl" min="10" max="50" step="1" value="16" data-target="text1">
+
+		<label for="fontColor">Колір шрифту:</label>
+		<input type="color" class="fontColorControl" value="#000000" data-target="text1">
+
+		<label for="textStroke">Товщина рамки тексту:</label>
+		<input type="range" class="textStrokeControl" min="0" max="5" step="0.1" value="0" data-target="text1">
+
+		<label for="textStrokeColor">Колір рамки тексту:</label>
+		<input type="color" class="textStrokeColorControl" value="#000000" data-target="text1">
+
+		<label for="verticalPosition">Вертикальне положення (відступ зверху):</label>
+		<input type="range" class="verticalPositionControl" min="0" max="200" step="1" value="0" data-target="text1">
+
+		<label for="textShadow">Тінь тексту:</label>
+		<input type="checkbox" class="textShadowControl" data-target="text1">
+
+		<label for="textShadowColor">Колір тіні тексту:</label>
+		<input type="color" class="textShadowColorControl" value="#000000" data-target="text1">
+	</div>
+
+	<script>
+		$(document).ready(function () {
+			$('#elementSelector').change(function () {
+				var selectedElementId = $(this).val();
+				updateControls(selectedElementId);
+			});
+
+			$('.fontSizeControl, .fontColorControl, .textStrokeControl, .textStrokeColorControl, .verticalPositionControl, .textShadowControl, .textShadowColorControl').on('input', function () {
+				var selectedElementId = $('#elementSelector').val();
+				applyStyles(selectedElementId);
+			});
+		});
+
+		function updateControls(elementId) {
+			var element = $('#' + elementId);
+			var fontSize = parseInt(element.css('font-size'));
+			var fontColor = element.css('color');
+			var textStroke = parseFloat(element.css('-webkit-text-stroke-width'));
+			var textStrokeColor = element.css('-webkit-text-stroke-color');
+			var verticalPosition = parseInt(element.css('margin-top'));
+			var hasTextShadow = element.css('text-shadow') !== 'none';
+			var textShadowColor = element.css('text-shadow-color');
+
+			$('.fontSizeControl').val(fontSize);
+			$('.fontColorControl').val(rgbToHex(fontColor));
+			$('.textStrokeControl').val(textStroke);
+			$('.textStrokeColorControl').val(rgbToHex(textStrokeColor));
+			$('.verticalPositionControl').val(verticalPosition);
+			$('.textShadowControl').prop('checked', hasTextShadow);
+			$('.textShadowColorControl').val(rgbToHex(textShadowColor));
+		}
+
+		function applyStyles(elementId) {
+			var fontSize = $('.fontSizeControl').val() + 'px';
+			var fontColor = $('.fontColorControl').val();
+			var textStroke = $('.textStrokeControl').val() + 'px';
+			var textStrokeColor = $('.textStrokeColorControl').val();
+			var verticalPosition = $('.verticalPositionControl').val() + 'px';
+			var hasTextShadow = $('.textShadowControl').is(':checked');
+			var textShadowColor = $('.textShadowColorControl').val();
+
+			$('#' + elementId).css('font-size', fontSize);
+			$('#' + elementId).css('color', fontColor);
+			$('#' + elementId).css('-webkit-text-stroke', textStroke + ' ' + textStrokeColor);
+			$('#' + elementId).css('margin-top', verticalPosition);
+			$('#' + elementId).css('text-shadow', hasTextShadow ? '2px 2px 2px ' + textShadowColor : 'none');
+		}
+
+		function rgbToHex(rgb) {
+			// Convert RGB to HEX
+			var hex = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+			return "#" + hex[1].toString(16).padStart(2, '0') +
+				hex[2].toString(16).padStart(2, '0') +
+				hex[3].toString(16).padStart(2, '0');
+		}
+	</script>
+</body>
+
+</html>

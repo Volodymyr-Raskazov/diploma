@@ -35,7 +35,7 @@ const startup = () => {
 	colorText.addEventListener("change", updateAll, false);
 	colorHeadBorder.addEventListener("change", updateAll, false);
 	colorText.select();
-	colorHead.addEventListener("change", updateAll, false);
+	colorHead.select();
 	colorHeadBorder.select();
 };
 
